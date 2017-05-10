@@ -53,4 +53,29 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+
+  get 'item/:item_hash', to: 'items#show'
+  get 'item/:item_hash/entries', to: 'entries#index'
+  get 'items', to: 'items#index'
+
+  get 'entries', to: 'entries#index'
+  get 'entry/:entry_number', to: 'entries#show'
+  get 'entry/:entry_number/proofs', to: 'proofs#entries'
+
+  get 'records', to: 'records#index'
+  get 'record/:item_id', to: 'records#show'
+  get 'record/:item_id/entries', to: 'entries#index'
+  get 'records/:field_name/:value', to: 'records#index'
+
+  get 'proofs', to: 'proofs#index'
+  get 'proof/register/:proof_identifier', to: 'proofs#register'
+  get 'proof/entry/:entry_number/:total_entries/:proof_identifier', to: 'proofs#entry'
+  get 'proof/consistency/:total_entries_1/:total_entries_2/:proof_identifier',
+      to: 'proofs#consistency'
+  get 'proof/records/:proof_identifier', to: 'proofs#records'
+  get 'proof/record/:total_entries/:item_primary_key/:proof_identifier', to: 'proofs#record'
+
+  get 'register', to: 'register#show'
+  get 'download-register', to: 'register#download'
 end

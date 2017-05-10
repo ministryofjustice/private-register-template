@@ -29,6 +29,7 @@ gem 'devise'
 # MONGO DB! Register pattern strongly suggests a document store, and it's the
 # de-facto standard in Rails.... open to any alternatives?
 gem 'mongoid', '>= 4.0.2'
+gem 'mongoid-slug'
 
 # use standard Gov.uk look-and-feel
 gem 'govuk_template'
@@ -46,6 +47,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec'
+  gem 'rspec-rails'
 end
 
 group :development do
