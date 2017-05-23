@@ -1,28 +1,20 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A template app to serve as a starting point for implementing the (Register pattern)[https://registers-docs.cloudapps.digital/#api-reference]
 
-Things you may want to cover:
+=== Model
 
-* Ruby version
+The model is not as straightforward as it may first appear, especially the relationship between items, entries and records.
 
-* System dependencies
+Description of the model from michaelabenyohai_gds on slack, 19th May 2017:
 
-* Configuration
+> An item is basically a blob of data (specifically a set of field-value pairs related to some domain like country). 
+> 
+> An entry is effectively a pointer to an item (via it's hash) and contains some metadata about when it was appended to the register. So (..) the entries are the audit trail for when items were added to the register.
+> 
+> Each record has a `key`. The set of records contains the latest entry in the list of entries for each key value. (edited)
+> 
+> (Latest entry meaning the entry with the greatest `entry-number`)
+> 
+> Currently, once something exists in the set of records it is not possible to remove it. We represent a country ending by appending an entry that references an item with an `end-date`. E.g. https://country.register.gov.uk/record/DD
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
