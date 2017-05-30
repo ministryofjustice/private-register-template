@@ -3,5 +3,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.where(item_hash: params[:item_hash]).first
+    json_response @item, :ok
   end
 end

@@ -1,4 +1,5 @@
 # Represents the actual chunk of json data that's stored
+# Subclass this for more domain-friendly models with appropriate attrs
 class Item
   include Mongoid::Document
   include Concerns::Hashable
