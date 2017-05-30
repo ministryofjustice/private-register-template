@@ -21,7 +21,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '>= 0.4.0', group: :doc
 
 # use devise for authentication and warden for authorization
 gem 'devise'
@@ -30,6 +30,8 @@ gem 'devise'
 # de-facto standard in Rails.... open to any alternatives?
 gem 'mongoid', '>= 4.0.2'
 gem 'mongoid-slug'
+gem 'mongoid-autoinc'
+
 
 # use standard Gov.uk look-and-feel
 gem 'govuk_template'
@@ -55,6 +57,6 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  #gem 'spring'
 end
 

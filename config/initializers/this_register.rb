@@ -5,3 +5,5 @@ Rails.configuration.x.this_register = {
   register: 'name of the register',
   key:      'URL-safe unique identifier for this register'
 }
+
+Rails.configuration.x.hash_type = Digest::SHA256
