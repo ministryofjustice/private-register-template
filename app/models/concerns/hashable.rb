@@ -16,20 +16,19 @@ module Concerns
       include Mongoid::Slug
 
       field :item_hash, type: String
-      slug :item_hash
 
-      before_validation { |document| set_hash(:item_hash, document) }
-      validates :item_hash, uniqueness: true, presence: true
+      before_create { |document| set_hash(:item_hash, document) }
+      validates :item_hash, uniqueness: true
 
       def set_hash(field_name, document)
-        send("#{field_name}=", formatted_hash(document))
+        send("#{field_name}=", formatted_hash(document)) if send(field_name).nil?
       end
 
       def formatted_hash(document)
         hash_type = hash_type_or_default
         
         doc_as_json = document.attributes.except('_id').to_h.to_s
-        type_specifier = type.to_s.split('::').last.to_s.downcase
+        type_specifier = hash_type.to_s.split('::').last.to_s.downcase
 
         [type_specifier, hash_type.hexdigest(doc_as_json)].join(':')
       end

@@ -1,14 +1,15 @@
 # Represents the actual chunk of json data that's stored
 class Item
   include Mongoid::Document
-  include Mongoid::Slug
-
-  field :item_hash, type: String
-  slug :item_hash
+  include Concerns::Hashable
 
   has_one :entry
 
-  before :update, :destroy do |_document|
+  before_update do |_document|
+    raise NoMethodError,
+          'Items cannot be updated or destroyed in an append-only store'
+  end
+  before_destroy do |_document|
     raise NoMethodError,
           'Items cannot be updated or destroyed in an append-only store'
   end
@@ -28,12 +29,4 @@ class Item
           'implement in subclasses'
   end
 
-  def set_hash(field_name, document)
-    send("#{field_name}=", formatted_hash(document))
-  end
-
-  def formatted_hash(document)
-    puts document.inspect
-    Rails.configuration.x.hash_type.hexdigest(document.to_s)
-  end
 end

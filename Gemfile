@@ -26,6 +26,9 @@ gem 'sdoc', '>= 0.4.0', group: :doc
 # use devise for authentication and warden for authorization
 gem 'devise'
 
+# Provides to_url string method, to make arbitrary unicode strings url-safe
+gem 'stringex'
+
 # MONGO DB! Register pattern strongly suggests a document store, and it's the
 # de-facto standard in Rails.... open to any alternatives?
 gem 'mongoid', '>= 4.0.2'

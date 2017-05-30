@@ -10,7 +10,7 @@ class Entry
   increments :entry_number
 
   field :entry_timestamp, type: String
-  field :item_hashes, type: String
+  field :item_hashes, type: Array
   field :key, type: String
 
   has_many :items
@@ -24,7 +24,8 @@ class Entry
   # But in that case, shouldn't the key be an array as well?
   # I've asked about this, not got an answer yet.
   def self.record!(for_item)
-    self.item_hashes = [for_item.item_hash]
-    self.key = for_item.key
+    e = new(item_hashes: [for_item.item_hash],
+            key: for_item.key)
+    e.save!
   end
 end
