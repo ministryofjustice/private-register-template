@@ -63,3 +63,6 @@ group :development do
   #gem 'spring'
 end
 
+group :test do
+  gem 'database_cleaner', '>= 1.5.3'
+end

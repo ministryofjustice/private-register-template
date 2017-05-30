@@ -5,7 +5,7 @@ module Actions
   # Removes the need for before_xyz callbacks in the model.
   #
   class NewItem
-    def self.perform(opts = {})
+    def self.perform!(opts = {})
       klass = opts.delete(:class) || Item
       item = klass.new(opts)
       item.save!

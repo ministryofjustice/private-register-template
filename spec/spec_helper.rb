@@ -93,4 +93,15 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # clear out the database for each run
+  config.before(:suite) do
+    DatabaseCleaner[:mongoid].strategy = :truncation
+    DatabaseCleaner[:mongoid].clean_with(:truncation)
+  end
+  config.around(:each) do |example|
+    DatabaseCleaner[:mongoid].cleaning do
+      example.run
+    end
+  end
 end
