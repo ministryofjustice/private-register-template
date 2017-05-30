@@ -31,5 +31,31 @@ describe Concerns::Hashable do
         expect(instance.errors[:item_hash]).to_not be_empty
       end
     end
+
+    context 'with a blank hash' do
+      before do
+        instance.item_hash = nil
+      end
+
+      describe 'being saved' do
+        before do
+          instance.save!
+        end
+
+        it 'gets an item_hash automatically set' do
+          expect(instance.item_hash).to_not be_empty
+        end
+
+        describe 'the item_hash value' do
+          it 'starts with the type of the hash' do
+            expect(instance.item_hash).to start_with('sha256:')
+          end
+
+          it 'ends with the document hexdigest' do
+            expect(instance.item_hash).to end_with(instance.document_hexdigest)
+          end
+        end
+      end
+    end
   end
 end

@@ -26,11 +26,14 @@ module Concerns
 
       def formatted_hash(document)
         hash_type = hash_type_or_default
-        
-        doc_as_json = document.attributes.except('_id').to_h.to_s
         type_specifier = hash_type.to_s.split('::').last.to_s.downcase
 
-        [type_specifier, hash_type.hexdigest(doc_as_json)].join(':')
+        [type_specifier, document_hexdigest(document)].join(':')
+      end
+
+      def document_hexdigest(document=self)
+        doc_as_json = document.attributes.except('_id', 'item_hash').to_h.to_s
+        hash_type_or_default.hexdigest(doc_as_json)
       end
 
       def hash_type_or_default
