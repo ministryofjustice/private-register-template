@@ -1,6 +1,6 @@
 == README
 
-A template app to serve as a starting point for implementing the (Register pattern)[https://registers-docs.cloudapps.digital/#api-reference]
+A template app to serve as a starting point for implementing the {Register pattern}[https://registers-docs.cloudapps.digital/#api-reference]
 
 === Model
 
